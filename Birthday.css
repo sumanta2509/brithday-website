@@ -1,0 +1,174 @@
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+canvas {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* ── Interactive Floating Letter ─────────────────────────────── */
+#fl-letter {
+  position: fixed;
+  font-size: 28px;
+  z-index: 20;
+  cursor: pointer;
+  user-select: none;
+  /* float up-down bob animation */
+  animation: fl-bob 3s ease-in-out infinite,
+             fl-glow 2.5s ease-in-out infinite alternate;
+  /* smooth position transitions on click */
+  transition: left 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
+              top  0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 0 6px #ff69b4) drop-shadow(0 0 14px #ff1493);
+}
+
+#fl-letter:hover {
+  transform: scale(1.2) rotate(-6deg);
+  transition: left 0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
+              top  0.55s cubic-bezier(0.34, 1.56, 0.64, 1),
+              transform 0.2s ease;
+}
+
+/* jump pop when clicking */
+#fl-letter.fl-jump {
+  animation: fl-bob 3s ease-in-out infinite,
+             fl-jump-pop 0.4s ease forwards;
+}
+
+@keyframes fl-bob {
+  0%, 100% { transform: translateY(0px) rotate(-3deg); }
+  50%       { transform: translateY(-12px) rotate(3deg); }
+}
+
+@keyframes fl-glow {
+  from { filter: drop-shadow(0 0 5px #ff69b4)  drop-shadow(0 0 12px #b0003a); }
+  to   { filter: drop-shadow(0 0 12px #ff1493) drop-shadow(0 0 22px #ff69b4); }
+}
+
+@keyframes fl-jump-pop {
+  0%   { transform: scale(1); }
+  40%  { transform: scale(1.35) rotate(12deg); }
+  70%  { transform: scale(0.9) rotate(-4deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+/* hint label below the emoji */
+#fl-letter::after {
+  content: "click me";
+  display: block;
+  font-size: 9px;
+  font-family: Verdana, sans-serif;
+  color: #ff69b4;
+  text-align: center;
+  letter-spacing: 0.5px;
+  margin-top: 1px;
+  opacity: 0.7;
+}
+
+/* ── Romantic Message Overlay ────────────────────────────────── */
+#fl-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.82);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* hidden by default */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+
+#fl-overlay.fl-open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+#fl-card {
+  background: linear-gradient(145deg, #1a0010, #2d0018, #1a0010);
+  border: 1px solid rgba(255, 100, 160, 0.4);
+  box-shadow: 0 0 40px rgba(255, 20, 147, 0.4),
+              0 0 80px rgba(180, 0, 60, 0.2),
+              inset 0 0 30px rgba(255, 105, 180, 0.05);
+  border-radius: 24px;
+  padding: 40px 48px;
+  max-width: 480px;
+  width: 88%;
+  text-align: center;
+  /* pop-in animation */
+  transform: scale(0.7);
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+#fl-overlay.fl-open #fl-card {
+  transform: scale(1);
+}
+
+.fl-hearts {
+  font-size: 28px;
+  letter-spacing: 6px;
+  margin-bottom: 10px;
+  animation: fl-heartbeat 1.4s ease-in-out infinite;
+}
+
+@keyframes fl-heartbeat {
+  0%, 100% { transform: scale(1); }
+  14%       { transform: scale(1.15); }
+  28%       { transform: scale(1); }
+  42%       { transform: scale(1.1); }
+  56%       { transform: scale(1); }
+}
+
+.fl-title {
+  font-family: Georgia, serif;
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ff69b4;
+  text-shadow: 0 0 16px #ff1493, 0 0 32px #b00050;
+  margin: 10px 0 18px;
+  letter-spacing: 2px;
+}
+
+.fl-msg {
+  font-family: Georgia, serif;
+  font-size: 1.05rem;
+  line-height: 1.9;
+  color: #ffe0ec;
+  text-shadow: 0 0 6px rgba(255, 100, 160, 0.5);
+  margin-bottom: 20px;
+}
+
+.fl-sub {
+  font-style: italic;
+  color: #ff9dca;
+  font-size: 1rem;
+}
+
+#fl-close {
+  margin-top: 10px;
+  padding: 10px 28px;
+  background: transparent;
+  border: 1px solid rgba(255, 105, 180, 0.5);
+  border-radius: 50px;
+  color: #ff69b4;
+  font-size: 0.9rem;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: background 0.25s, box-shadow 0.25s;
+}
+
+#fl-close:hover {
+  background: rgba(255, 20, 147, 0.15);
+  box-shadow: 0 0 14px rgba(255, 20, 147, 0.35);
+}

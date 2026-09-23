@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday My Life</title>
+    <link rel="stylesheet" href="Birthday.css" />
+  </head>
+  <body>
+    <audio id="bgMusic" loop>
+  <source src="music.m4a" type="audio/mp4">
+</audio>
+    <canvas id="c"></canvas>
+
+    <!-- Interactive Floating Letter (click 1→move, click 2→move, click 3→open) -->
+    <div id="fl-letter" title="Click me...">💌</div>
+
+    <!-- Romantic Message Overlay (revealed on 3rd click) -->
+    <div id="fl-overlay">
+      <div id="fl-card">
+        <div class="fl-hearts">💖 💗 💖</div>
+        <h1 class="fl-title">Happy Birthday Mona 😛</h1>
+        <p class="fl-msg">
+           Oi Petni 🥹💓<br><br>
+          Always stay happy and keep smiling.<br>
+             Love you ❤️</p>
+          <span class="fl-sub">I love you forever & always 💕</span>
+          <br>
+             <span class="fl-sub">Your Vut 👻</span>
+        </p>
+        <div class="fl-hearts">🌹 ✨ 🌹</div>
+        <button id="fl-close">Close ✕</button>
+      </div>
+    </div>
+    <script>document.addEventListener("click", function () {document.getElementById("bgMusic").play();
+}, { once: true });
+</script>
+    <script src="sumanta2509"></script>
+  </body>
+</html>
