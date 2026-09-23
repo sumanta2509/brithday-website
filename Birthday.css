@@ -19,6 +19,8 @@ canvas {
 /* ── Interactive Floating Letter ─────────────────────────────── */
 #fl-letter {
   position: fixed;
+  top: 45%
+  left: 50%
   font-size: 28px;
   z-index: 20;
   cursor: pointer;
