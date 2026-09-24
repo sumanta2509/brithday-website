@@ -68,7 +68,7 @@ canvas {
 #fl-letter::after {
   content: "click me";
   display: block;
-  font-size: 9px;
+  font-size: 14px;
   font-family: Verdana, sans-serif;
   color: #ff69b4;
   text-align: center;
