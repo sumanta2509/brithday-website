@@ -481,6 +481,13 @@ window.addEventListener("resize", function () {
 
   el.addEventListener("click", function (e) {
     e.stopPropagation();
+    if (!window.music) {
+    window.music = new Audio("music.m4a");
+    window.music.loop = true;
+    window.music.volume = 1;
+}
+
+window.music.play().catch(() => {});
     clickCount++;
 
     if (clickCount === 1) {
